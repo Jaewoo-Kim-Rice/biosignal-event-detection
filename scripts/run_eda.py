@@ -17,21 +17,16 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.signal import butter, sosfiltfilt, get_window
+from scipy.signal import get_window
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ppg_hr.data import (  # noqa: E402
     ACTIVITIES, FS_ACC, FS_PPG, SHIFT_S, load_subject, n_windows, window_slice,
 )
+from ppg_hr.spectral import bandpass  # noqa: E402
 
-BAND_HZ = (0.4, 4.0)      # heart-rate band: 24-240 bpm
 NFFT = 4096
 BPM_LIM = (30, 210)
-
-
-def bandpass(x, fs, lo=BAND_HZ[0], hi=BAND_HZ[1], order=4):
-    sos = butter(order, [lo, hi], btype="bandpass", fs=fs, output="sos")
-    return sosfiltfilt(sos, x, axis=0)
 
 
 def windowed_spectrogram(x, fs, n_win):

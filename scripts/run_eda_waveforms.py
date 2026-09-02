@@ -17,7 +17,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ppg_hr.data import ACTIVITIES, FS_ACC, FS_PPG, SHIFT_S, WIN_S, load_subject  # noqa: E402
-from run_eda import bandpass  # noqa: E402
+from ppg_hr.spectral import bandpass  # noqa: E402
 
 SHOW_ACTIVITIES = (1, 7, 2, 4)  # sitting, walking, stairs, cycling
 SEG_S = 20
